@@ -33,18 +33,19 @@ export default React.createClass({
   },
   createVoteSubjectCards(voteSubjects) {
     return voteSubjects.map(voteSubject => {
-      return { name: voteSubject.name, image: voteSubject.imgUrl }
+      return {
+        name: voteSubject.name,
+        image: voteSubject.imgUrl,
+        userId: voteSubject.userId}
     })
   },
   handleRat (card) {
     console.log("rat")
-    // userId: 'FABIAN',
-    // voteSubjectId: event.value.subjectId ,
-    // vote: event.vote
+    console.log(card);
     this.props.handleEvent({
       type: this.props.events.vote,
       value: {
-        subjectId: 'NÅGON',
+        subjectId: card.userId,
         vote: 'RAT'
       }
     })
@@ -54,7 +55,7 @@ export default React.createClass({
     this.props.handleEvent({
       type: this.props.events.vote,
       value: {
-        subjectId: 'NÅGON',
+        subjectId: card.userId,
         vote: 'PIG'
       }
     })

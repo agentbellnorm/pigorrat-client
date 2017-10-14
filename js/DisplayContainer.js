@@ -24,7 +24,7 @@ export default class App extends React.Component {
           userId: 'FABIAN',
           voteSubjectId: event.value.subjectId ,
           vote: event.value.vote
-        }).then((response) => console.log(response))
+        }).then((response) => console.log('voted!'))
     }
   }
 
