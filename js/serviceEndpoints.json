@@ -1,0 +1,3 @@
+{
+  "getUsers" : "https://us-central1-pigorrat.cloudfunctions.net/getVoteSubjects"
+}
