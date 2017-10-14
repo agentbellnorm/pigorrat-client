@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import getUsersToVote from './services/getUsersToVote';
+import SwipeCards from './SwipeCards';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -31,13 +32,9 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <Text>GRIS ELLER RÅTTA?</Text>
-        { this.state.hasFetched ? this.state.users.map(user => {
-          return (
-            <Image
-              style={{width: 200, height: 200}}
-              source={{uri: user.imgUrl}}
-            />)
-        } ) : null }
+        { !!this.state.hasFetched
+          ? <SwipeCards users={this.state.users}/>
+          : <Text> LADDAR </Text> }
       </View>
     );
   }
