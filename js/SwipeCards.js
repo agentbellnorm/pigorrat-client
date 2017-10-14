@@ -34,7 +34,7 @@ export default React.createClass({
   },
   createVoteSubjectCards(voteSubjects) {
     return voteSubjects.map(voteSubject => {
-      return { name: voteSubject.name, image: voteSubject.imgUrl }
+      return { name: voteSubject.name, image: voteSubject.imgUrl } 
     })
   },
   handleYup (card) {
@@ -55,7 +55,7 @@ export default React.createClass({
       console.log(`There are only ${this.state.cards.length - index - 1} cards left.`);
 
       if (!this.state.outOfCards) {
-        console.log(`Adding ${Cards2.length} more cards`)
+        // console.log(`Adding ${Cards2.length} more cards`)
 
         // this.setState({
         //   cards: this.state.cards.concat(Cards2),

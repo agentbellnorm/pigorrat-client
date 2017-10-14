@@ -30,11 +30,7 @@ export default class App extends React.Component {
         this.setState({
           isFetching: false,
           hasFetched: true,
-          voteSubjects: [{
-            uuid: '12344',
-            imgUrl: "https://upload.wikimedia.org/wikipedia/commons/3/37/Sus_Barbatus%2C_the_Bornean_Bearded_Pig_%2812616351323%29.jpg",
-            name: "Fabian"
-          }]
+          voteSubjects: data
         })
       })
     }
@@ -44,12 +40,12 @@ export default class App extends React.Component {
         <Text>{texts.header}</Text>
         {
           modelFunctions.isLoading(this.state)
-          ? <SwipeCards
+          ? <Text> {texts.loading} </Text>
+          : <SwipeCards
               voteSubjects={this.state.voteSubjects}
               handleEvent={this.handleEvent}
               events
             />
-          : <Text> {texts.loading} </Text>
         }
       </View>
     );

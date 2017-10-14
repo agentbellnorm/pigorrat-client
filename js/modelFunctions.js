@@ -3,5 +3,5 @@ export function shouldCallGetvoteSubjects(state) {
 }
 
 export function isLoading(state) {
-  return !!state.hasFetched || state.isFetching
+  return !state.hasFetched || state.isFetching
 }
