@@ -1,8 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
-
-
 import SwipeCards from 'react-native-swipe-cards';
+import texts from '../texts';
 
 let Card = React.createClass({
   render() {
@@ -19,7 +18,7 @@ let NoMoreCards = React.createClass({
   render() {
     return (
       <View style={styles.noMoreCards}>
-        <Text>No more cards</Text>
+        <Text>{texts.outOfCards}</Text>
       </View>
     )
   }
@@ -34,18 +33,34 @@ export default React.createClass({
   },
   createVoteSubjectCards(voteSubjects) {
     return voteSubjects.map(voteSubject => {
-      return { name: voteSubject.name, image: voteSubject.imgUrl } 
+      return { name: voteSubject.name, image: voteSubject.imgUrl }
     })
   },
-  handleYup (card) {
-    console.log("yup")
+  handleRat (card) {
+    console.log("rat")
+    // userId: 'FABIAN',
+    // voteSubjectId: event.value.subjectId ,
+    // vote: event.vote
+    this.props.handleEvent({
+      type: this.props.events.vote,
+      value: {
+        subjectId: 'NÅGON',
+        vote: 'RAT'
+      }
+    })
   },
-  handleNope (card) {
-    console.log("nope")
+  handlePig (card) {
+    console.log("pig")
+    this.props.handleEvent({
+      type: this.props.events.vote,
+      value: {
+        subjectId: 'NÅGON',
+        vote: 'PIG'
+      }
+    })
   },
   cardRemoved (index) {
     console.log(`The index is ${index}`);
-    this.props.handleEvent({ type: this.props.events.vote, value: 'UUID' })
 
     let CARD_REFRESH_LIMIT = 3
 
@@ -74,11 +89,11 @@ export default React.createClass({
 
         renderCard={(cardData) => <Card {...cardData} />}
         renderNoMoreCards={() => <NoMoreCards />}
-        showYup={true}
-        showNope={true}
+        showYup={false}
+        showNope={false}
 
-        handleYup={this.handleYup}
-        handleNope={this.handleNope}
+        handleYup={this.handleRat}
+        handleNope={this.handlePig}
         cardRemoved={this.cardRemoved}
       />
     )

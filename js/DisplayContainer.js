@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import * as modelFunctions from './modelFunctions';
 import getVoteSubjects from './services/getVoteSubjects';
+import castVote from './services/castVote';
 import SwipeCards from './SwipeCards';
 import texts from '../texts.json';
 import * as events from '../events';
@@ -19,7 +20,11 @@ export default class App extends React.Component {
     switch (event.type) {
       case events.vote:
         // act on event, remove subject with ID from list of loaded subjects
-        console.log('event', event.value)
+        castVote({
+          userId: 'FABIAN',
+          voteSubjectId: event.value.subjectId ,
+          vote: event.value.vote
+        }).then((response) => console.log(response))
     }
   }
 
@@ -44,7 +49,7 @@ export default class App extends React.Component {
           : <SwipeCards
               voteSubjects={this.state.voteSubjects}
               handleEvent={this.handleEvent}
-              events
+              events={events}
             />
         }
       </View>

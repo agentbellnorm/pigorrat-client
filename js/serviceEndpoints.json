@@ -1,3 +1,4 @@
 {
-  "getVoteSubjects" : "https://us-central1-pigorrat.cloudfunctions.net/getVoteSubjects"
+  "getVoteSubjects": "https://us-central1-pigorrat.cloudfunctions.net/getVoteSubjects",
+  "castVote": "https://us-central1-pigorrat.cloudfunctions.net/castVote",
 }
