@@ -1,4 +1,4 @@
-import serviceEndpoints from '../serviceEndpoints.json';
+import serviceEndpoints from '../config/serviceEndpoints.json';
 
 export default function getVoteSubjects() {
     return fetch(serviceEndpoints.getVoteSubjects + '?userId=FABIAN')

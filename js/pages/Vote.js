@@ -1,12 +1,16 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
-import * as modelFunctions from './modelFunctions';
-import getVoteSubjects from './services/getVoteSubjects';
-import SwipeCards from './SwipeCards';
-import texts from '../texts.json';
-import * as events from '../events';
+import * as modelFunctions from '../lib/modelFunctions';
+import getVoteSubjects from '../services/getVoteSubjects';
+import SwipeCards from '../components/SwipeCards';
+import texts from '../config/texts.json';
+import * as events from '../config/events';
 
 export default class App extends React.Component {
+  static navigationOptions = {
+    title: 'Rösta',
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -23,7 +27,7 @@ export default class App extends React.Component {
     }
   }
 
-  render() {
+  componentWillMount() {
     if (modelFunctions.shouldCallGetvoteSubjects(this.state)) {
       this.setState({ isFetching: true, hasFetched: false })
       getVoteSubjects().then(data => {
@@ -34,7 +38,9 @@ export default class App extends React.Component {
         })
       })
     }
+  }
 
+  render() {
     return (
       <View style={styles.container}>
         <Text>{texts.header}</Text>

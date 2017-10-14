@@ -1,7 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
 
-
 import SwipeCards from 'react-native-swipe-cards';
 
 let Card = React.createClass({
@@ -34,7 +33,7 @@ export default React.createClass({
   },
   createVoteSubjectCards(voteSubjects) {
     return voteSubjects.map(voteSubject => {
-      return { name: voteSubject.name, image: voteSubject.imgUrl } 
+      return { name: voteSubject.name, image: voteSubject.imgUrl }
     })
   },
   handleYup (card) {
