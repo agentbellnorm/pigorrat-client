@@ -1,26 +1,36 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
-import getUsersToVote from './services/getUsersToVote';
+import * as modelFunctions from './modelFunctions';
+import getVoteSubjects from './services/getVoteSubjects';
 import SwipeCards from './SwipeCards';
+import texts from '../texts.json';
+import * as events from '../events';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       fetchingFinished: false,
-      users: []
+      voteSubjects: []
+    }
+  }
+
+  handleEvent(event) {
+    switch (event.type) {
+      case events.vote:
+        // act on event, remove subject with ID from list of loaded subjects
+        console.log('event', event.value)
     }
   }
 
   render() {
-    if (!this.state.hasFetched && !this.state.isFetching) {
+    if (modelFunctions.shouldCallGetvoteSubjects(this.state)) {
       this.setState({ isFetching: true, hasFetched: false })
-
-      getUsersToVote().then(data => {
+      getVoteSubjects().then(data => {
         this.setState({
           isFetching: false,
           hasFetched: true,
-          users: [{
+          voteSubjects: [{
             uuid: '12344',
             imgUrl: "https://upload.wikimedia.org/wikipedia/commons/3/37/Sus_Barbatus%2C_the_Bornean_Bearded_Pig_%2812616351323%29.jpg",
             name: "Fabian"
@@ -31,10 +41,16 @@ export default class App extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Text>GRIS ELLER RÅTTA?</Text>
-        { !!this.state.hasFetched
-          ? <SwipeCards users={this.state.users}/>
-          : <Text> LADDAR </Text> }
+        <Text>{texts.header}</Text>
+        {
+          modelFunctions.isLoading(this.state)
+          ? <SwipeCards
+              voteSubjects={this.state.voteSubjects}
+              handleEvent={this.handleEvent}
+              events
+            />
+          : <Text> {texts.loading} </Text>
+        }
       </View>
     );
   }

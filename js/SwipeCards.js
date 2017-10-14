@@ -25,23 +25,16 @@ let NoMoreCards = React.createClass({
   }
 })
 
-const Cards2 = [
-  {name: '10', image: 'https://media.giphy.com/media/12b3E4U9aSndxC/giphy.gif'},
-  {name: '11', image: 'https://media4.giphy.com/media/6csVEPEmHWhWg/200.gif'},
-  {name: '12', image: 'https://media4.giphy.com/media/AA69fOAMCPa4o/200.gif'},
-  {name: '13', image: 'https://media.giphy.com/media/OVHFny0I7njuU/giphy.gif'},
-]
-
 export default React.createClass({
   getInitialState() {
     return {
-      cards: this.createUserCards(this.props.users),
+      cards: this.createVoteSubjectCards(this.props.voteSubjects),
       outOfCards: false
     }
   },
-  createUserCards(users) {
-    return users.map(user => {
-      return { name: user.name, image: user.imgUrl }
+  createVoteSubjectCards(voteSubjects) {
+    return voteSubjects.map(voteSubject => {
+      return { name: voteSubject.name, image: voteSubject.imgUrl }
     })
   },
   handleYup (card) {
@@ -52,6 +45,7 @@ export default React.createClass({
   },
   cardRemoved (index) {
     console.log(`The index is ${index}`);
+    this.props.handleEvent({ type: this.props.events.vote, value: 'UUID' })
 
     let CARD_REFRESH_LIMIT = 3
 
