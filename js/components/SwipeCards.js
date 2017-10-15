@@ -8,7 +8,6 @@ let Card = React.createClass({
     return (
       <View style={styles.card}>
         <Image style={styles.thumbnail} source={{uri: this.props.image}} />
-        <Text style={styles.text}>This is card {this.props.name}</Text>
       </View>
     )
   }
@@ -71,12 +70,12 @@ export default React.createClass({
       // Add fresh cards when user is running out
       console.log(`There are only ${this.state.cards.length - index - 1} cards left.`);
 
-      if (!this.state.outOfCards) {
+      if (this.state.outOfCards) {
         // console.log(`Adding ${Cards2.length} more cards`)
 
         // this.setState({
         //   cards: this.state.cards.concat(Cards2),
-        //   outOfCards: true
+        //   outOfCards: false
         // })
       }
 
@@ -107,10 +106,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 5,
     overflow: 'hidden',
-    borderColor: 'grey',
+    borderColor: 'white',
     backgroundColor: 'white',
     borderWidth: 1,
     elevation: 1,
+    marginTop: 20,
+    marginBottom: 20
   },
   thumbnail: {
     flex: 1,

@@ -5,7 +5,16 @@ import * as modelFunctions from '../lib/modelFunctions';
 
 export default class Profile extends React.Component {
   static navigationOptions = {
-    title: 'Profil',
+    tabBarIcon: ({ tintColor }) => (
+      <Image
+        source={require('../../resources/images/account.png')}
+        style={{
+          width: 18,
+          height: 24,
+          tintColor: tintColor
+        }}
+      />
+    ),
   }
 
   constructor(props) {

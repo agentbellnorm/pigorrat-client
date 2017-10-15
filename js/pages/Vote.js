@@ -9,7 +9,16 @@ import * as events from '../config/events';
 
 export default class App extends React.Component {
   static navigationOptions = {
-    title: 'Rösta',
+    tabBarIcon: ({ tintColor }) => (
+      <Image
+        source={require('../../resources/images/judge.png')}
+        style={{
+          width: 30,
+          height: 24,
+          tintColor: tintColor
+        }}
+      />
+    ),
   }
 
   constructor(props) {
@@ -48,7 +57,6 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>{texts.header}</Text>
         {
           modelFunctions.isLoading(this.state)
           ? <Text> {texts.loading} </Text>
