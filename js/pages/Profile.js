@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Image, View } from 'react-native';
+import { Text, Image, View, Button } from 'react-native';
 import getUser from '../services/getUser';
 import * as modelFunctions from '../lib/modelFunctions';
 
@@ -50,9 +50,17 @@ export default class Profile extends React.Component {
         <Text
           style={{
             marginTop:20,
+            marginBottom:20,
             fontSize:22
           }}
           >{this.state.user.name}</Text>
+
+          <Button
+            onPress={modelFunctions.onPressLogOut}
+            title="Log out"
+            color="#FFAFDD"
+            accessibilityLabel="Click here to log out from this device."
+          />
 
       </View>
     )

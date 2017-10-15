@@ -84,19 +84,47 @@ export default React.createClass({
   },
   render() {
     return (
-      <SwipeCards
-        cards={this.state.cards}
-        loop={false}
+      <View>
+        <SwipeCards
+          cards={this.state.cards}
+          loop={false}
 
-        renderCard={(cardData) => <Card {...cardData} />}
-        renderNoMoreCards={() => <NoMoreCards />}
-        showYup={false}
-        showNope={false}
+          renderCard={(cardData) => <Card {...cardData} />}
+          renderNoMoreCards={() => <NoMoreCards />}
+          showYup={false}
+          showNope={false}
 
-        handleYup={this.handleRat}
-        handleNope={this.handlePig}
-        cardRemoved={this.cardRemoved}
-      />
+          handleYup={this.handleRat}
+          handleNope={this.handlePig}
+          cardRemoved={this.cardRemoved}
+        />
+
+        <View style={{
+          height: 90,
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+        }}>
+          <Image
+            source={require('../../resources/images/pig.png')}
+            style={{
+              width: 78,
+              height: 78,
+              marginLeft: 40,
+            }}
+            onPress={this.handleRat}
+          />
+
+          <Image
+            source={require('../../resources/images/rat.png')}
+            style={{
+              width: 78,
+              height: 78,
+              marginRight: 40,
+            }}
+            onPress={this.handlePig}
+          />
+        </View>
+      </View>
     )
   }
 })
@@ -118,13 +146,10 @@ const styles = StyleSheet.create({
     width: 300,
     height: 300,
   },
-  text: {
-    fontSize: 20,
-    paddingTop: 10,
-    paddingBottom: 10
-  },
   noMoreCards: {
     flex: 1,
+    width: 300,
+    height: 300,
     justifyContent: 'center',
     alignItems: 'center',
   }

@@ -42,7 +42,7 @@ export default class App extends React.Component {
   }
 
   componentWillMount() {
-    if (modelFunctions.shouldCallGetvoteSubjects(this.state)) {
+    if (modelFunctions.shouldCallStateProviderService(this.state)) {
       this.setState({ isFetching: true, hasFetched: false })
       getVoteSubjects().then(data => {
         this.setState({
