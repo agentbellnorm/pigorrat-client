@@ -1,14 +1,51 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Text, Image, View } from 'react-native';
+import getUser from '../services/getUser';
+import * as modelFunctions from '../lib/modelFunctions';
 
 export default class Profile extends React.Component {
   static navigationOptions = {
     title: 'Profil',
   }
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: {}
+    }
+  }
+
+  componentWillMount() {
+    getUser('FABIAN').then(data => {
+      this.setState({
+        user: data
+      })
+    })
+  }
+
   render() {
     return (
-      <Text>Profil</Text>
+      <View style={{
+          flex:1,
+          alignItems:'center'
+        }}>
+        <Image
+          style={{
+            height:160,
+            width: 160,
+            borderRadius: 80,
+            marginTop:40
+          }}
+          source={{uri: this.state.user.imgUrl}}source={{uri : this.state.user.imgUrl }}
+        />
+        <Text
+          style={{
+            marginTop:20,
+            fontSize:22
+          }}
+          >{this.state.user.name}</Text>
+
+      </View>
     )
   }
 }
