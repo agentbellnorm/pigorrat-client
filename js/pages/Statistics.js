@@ -31,6 +31,7 @@ export default class Statistics extends React.Component {
     if (modelFunctions.shouldCallStateProviderService(this.state)) {
       this.setState({ isFetching: true, hasFetched: false })
       getNumberOfVotes().then(data => {
+        console.log('number of votes', data);
         this.setState({
           isFetching: false,
           hasFetched: true,

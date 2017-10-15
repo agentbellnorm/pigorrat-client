@@ -6,8 +6,7 @@ export default function castVote({ userId, voteSubjectId, vote }) {
     voteSubject: voteSubjectId,
     vote
   }
-
-  console.log(data);
+  
   return fetch(serviceEndpoints.castVote, {
       method: 'post',
       body: JSON.stringify(data),
