@@ -8,7 +8,7 @@ let Card = React.createClass({
     return (
       <View style={styles.card}>
         <Image style={styles.thumbnail} source={{uri: this.props.image}} />
-        <Text style={styles.text}>This is card {this.props.name}</Text>
+        <Text style={styles.text}>This is {this.props.name}</Text>
       </View>
     )
   }
@@ -42,7 +42,6 @@ export default React.createClass({
   },
   handleRat (card) {
     console.log("rat")
-    console.log(card);
     this.props.handleEvent({
       type: this.props.events.vote,
       value: {
@@ -64,22 +63,15 @@ export default React.createClass({
   cardRemoved (index) {
     console.log(`The index is ${index}`);
 
-    let CARD_REFRESH_LIMIT = 3
+    let CARD_REFRESH_LIMIT = 4
 
     if (this.state.cards.length - index <= CARD_REFRESH_LIMIT + 1) {
 
       // Add fresh cards when user is running out
       console.log(`There are only ${this.state.cards.length - index - 1} cards left.`);
-
-      if (!this.state.outOfCards) {
-        // console.log(`Adding ${Cards2.length} more cards`)
-
-        // this.setState({
-        //   cards: this.state.cards.concat(Cards2),
-        //   outOfCards: true
-        // })
-      }
-
+      this.props.handleEvent({
+        type: this.props.events.refreshVoteSubjects
+      })
     }
 
   },

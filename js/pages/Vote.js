@@ -21,14 +21,24 @@ export default class App extends React.Component {
   }
 
   handleEvent(event) {
+    console.log('event', event);
     switch (event.type) {
       case events.vote:
-        // act on event, remove subject with ID from list of loaded subjects
         castVote({
           userId: 'FABIAN',
           voteSubjectId: event.value.subjectId ,
           vote: event.value.vote
-        }).then((response) => console.log('voted!'))
+        }).then((response) => console.log('voted!'));
+        break;
+      case event.refreshVoteSubjects:
+        console.log('refreshing...')
+        getVoteSubjects().then(data => {
+          console.log('Tried refreshing, got', data);
+          this.setState({
+            voteSubjects: data
+          })
+        })
+        break;
     }
   }
 
