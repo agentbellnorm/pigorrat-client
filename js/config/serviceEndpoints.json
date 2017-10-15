@@ -3,4 +3,5 @@
   "castVote": "https://us-central1-pigorrat.cloudfunctions.net/castVote",
   "getUser": "https://us-central1-pigorrat.cloudfunctions.net/getUser",
   "getNumberOfVotes": "https://us-central1-pigorrat.cloudfunctions.net/getNumberOfVotes",
+  "createUser": "https://us-central1-pigorrat.cloudfunctions.net/createUser",
 }

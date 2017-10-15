@@ -1,14 +1,14 @@
 import serviceEndpoints from '../config/serviceEndpoints.json';
 
-export default function castVote({ userId, voteSubjectId, vote }) {
+export default function createUser({ userId, name, imgUrl }) {
   const data = {
-    userId,
-    voteSubject: voteSubjectId,
-    vote
+    "userId" : userId,
+   	"name": name,
+  	"imgUrl": imgUrl
   }
 
-  return fetch(serviceEndpoints.castVote, {
-      method: 'post',
+  return fetch(serviceEndpoints.createUser, {
+      method: 'put',
       body: JSON.stringify(data),
       headers: {
         'Accept': 'application/json',
@@ -17,6 +17,6 @@ export default function castVote({ userId, voteSubjectId, vote }) {
     }).then((response) => {
       return response.json();
     }).catch((error) => {
-      console.log(error);
+      console.error(error);
     });
 }

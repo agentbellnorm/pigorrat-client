@@ -25,8 +25,11 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       fetchingFinished: false,
-      voteSubjects: []
+      voteSubjects: [],
+      user: props.screenProps.user
     }
+
+    this.handleEvent = this.handleEvent.bind(this);
   }
 
   handleEvent(event) {
@@ -34,14 +37,14 @@ export default class App extends React.Component {
     switch (event.type) {
       case events.vote:
         castVote({
-          userId: 'FABIAN',
-          voteSubjectId: event.value.subjectId ,
+          userId: this.state.user.userId,
+          voteSubjectId: event.value.subjectId,
           vote: event.value.vote
         }).then((response) => console.log('voted!'));
         break;
       case event.refreshVoteSubjects:
         console.log('refreshing...')
-        getVoteSubjects().then(data => {
+        getVoteSubjects(this.state.user.userId).then(data => {
           console.log('Tried refreshing, got', data);
           this.setState({
             voteSubjects: data
@@ -54,7 +57,7 @@ export default class App extends React.Component {
   componentWillMount() {
     if (modelFunctions.shouldCallStateProviderService(this.state)) {
       this.setState({ isFetching: true, hasFetched: false })
-      getVoteSubjects().then(data => {
+      getVoteSubjects(this.state.user.userId).then(data => {
         this.setState({
           isFetching: false,
           hasFetched: true,

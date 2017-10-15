@@ -1,36 +1,28 @@
 import React from 'react';
-import Vote from './js/pages/Vote';
-import Profile from './js/pages/Profile';
-import Statistics from './js/pages/Statistics';
-
 import { StyleSheet } from 'react-native';
-
-import {
-  TabNavigator
-} from 'react-navigation';
-
-export const Navigation = TabNavigator({
-  Profile: { screen: Profile },
-  Vote: { screen: Vote },
-  Statistics: { screen: Statistics },
-}, {
-  tabBarPosition: 'top',
-  animationEnabled: true,
-  swipeEnabled: false,
-  tabBarOptions: {
-    activeTintColor: '#FFAFDD',
-    inactiveTintColor: '#ddd',
-    style: {
-      backgroundColor: '#fff',
-      paddingTop: 20
-    },
-    showLabel: false
-  },
-})
+import Navigation from './js/components/Navigation';
+import Login from './js/pages/Login';
 
 export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: null
+    };
+
+    this.handleUserChange = this.handleUserChange.bind(this);
+  }
+
+  handleUserChange(user) {
+    this.setState({
+      "user": user
+    });
+  }
+
   render() {
-    return <Navigation />;
+    return this.state.user
+      ? <Navigation screenProps={{ user : this.state.user }} />
+      : <Login onUserChange={this.handleUserChange}/>;
   }
 }
 

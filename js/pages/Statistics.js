@@ -23,14 +23,15 @@ export default class Statistics extends React.Component {
     super(props);
     this.state = {
       fetchingFinished: false,
-      numberOfVotes: {}
+      numberOfVotes: {},
+      user: props.screenProps.user
     }
   }
 
   componentWillMount() {
     if (modelFunctions.shouldCallStateProviderService(this.state)) {
       this.setState({ isFetching: true, hasFetched: false })
-      getNumberOfVotes().then(data => {
+      getNumberOfVotes(this.state.user.userId).then(data => {
         console.log('number of votes', data);
         this.setState({
           isFetching: false,

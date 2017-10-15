@@ -20,16 +20,8 @@ export default class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: {}
+      user: props.screenProps.user
     }
-  }
-
-  componentWillMount() {
-    getUser('FABIAN').then(data => {
-      this.setState({
-        user: data
-      })
-    })
   }
 
   render() {
@@ -45,7 +37,7 @@ export default class Profile extends React.Component {
             borderRadius: 80,
             marginTop:40
           }}
-          source={{uri: this.state.user.imgUrl}}source={{uri : this.state.user.imgUrl }}
+          source={{uri: this.state.user.imgUrl}}
         />
         <Text
           style={{
