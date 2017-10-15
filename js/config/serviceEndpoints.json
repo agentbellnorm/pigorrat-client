@@ -2,4 +2,5 @@
   "getVoteSubjects": "https://us-central1-pigorrat.cloudfunctions.net/getVoteSubjects",
   "castVote": "https://us-central1-pigorrat.cloudfunctions.net/castVote",
   "getUser": "https://us-central1-pigorrat.cloudfunctions.net/getUser",
+  "getNumberOfVotes": "https://us-central1-pigorrat.cloudfunctions.net/getNumberOfVotes",
 }

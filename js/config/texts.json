@@ -1,5 +1,7 @@
 {
   "header": "GRIS ELLER RÅTTA?",
   "loading": "LADDAR",
-  "outOfCards": "SLUT PÅ KORT! :)"
+  "outOfCards": "SLUT PÅ KORT! :)",
+  "pig": "GRIS",
+  "rat": "RÅTTA",
 }

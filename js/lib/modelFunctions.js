@@ -1,4 +1,4 @@
-export function shouldCallGetvoteSubjects(state) {
+export function shouldCallStateProviderService(state) {
   return !state.hasFetched && !state.isFetching
 }
 
