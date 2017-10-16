@@ -2,7 +2,7 @@ import React from 'react';
 import { Facebook } from 'expo';
 import { FACEBOOK_APP_ID } from 'react-native-dotenv';
 import createUser from '../services/createUser';
-import { Text, Image, View, Button, StyleSheet } from 'react-native';
+import { Text, Image, View, Button, StyleSheet, AsyncStorage } from 'react-native';
 
 export default class App extends React.Component {
 
@@ -35,6 +35,8 @@ export default class App extends React.Component {
       };
 
       await createUser(user);
+
+      await AsyncStorage.setItem('@pigorrat:user', JSON.stringify(user));
 
       this.props.onUserChange(user);
     }

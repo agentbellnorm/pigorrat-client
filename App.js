@@ -1,16 +1,21 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, AsyncStorage } from 'react-native';
 import Navigation from './js/components/Navigation';
 import Login from './js/pages/Login';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      user: null
+      "user": null
     };
 
     this.handleUserChange = this.handleUserChange.bind(this);
+
+    AsyncStorage.getItem('@pigorrat:user').then((user) => {
+      this.handleUserChange(JSON.parse(user));
+    });
   }
 
   handleUserChange(user) {
