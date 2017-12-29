@@ -7,7 +7,7 @@ let Card = React.createClass({
   render() {
     return (
       <View style={styles.card}>
-        <Image style={styles.thumbnail} source={{uri: this.props.image}} />
+        <Image style={styles.thumbnail} source={{uri: this.props.image}} defaultSource={require('../../resources/images/loading.gif') }/>
       </View>
     )
   }
@@ -38,6 +38,12 @@ export default React.createClass({
         userId: voteSubject.userId
       }
     })
+  },
+  handleRatControlPressed () {
+    console.log("Pressed Rat")
+  },
+  handlePigControlPressed () {
+    console.log("Pressed Pig")
   },
   handleRat (card) {
     console.log("rat")
@@ -103,7 +109,7 @@ export default React.createClass({
               height: 78,
               marginLeft: 40,
             }}
-            onPress={this.handleRat}
+            onPress={this.handleRatControlPressed}
           />
 
           <Image
@@ -113,7 +119,7 @@ export default React.createClass({
               height: 78,
               marginRight: 40,
             }}
-            onPress={this.handlePig}
+            onPress={this.handlePigControlPressed}
           />
         </View>
       </View>

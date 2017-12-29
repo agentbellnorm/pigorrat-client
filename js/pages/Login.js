@@ -50,7 +50,7 @@ export default class App extends React.Component {
             style={{
               height:160,
               width: 160,
-              borderRadius: 80,
+              borderRadius: 0,
               marginTop:40
             }}
             source={require('../../resources/images/pig.png')}
@@ -59,7 +59,7 @@ export default class App extends React.Component {
             style={{
               height:160,
               width: 160,
-              borderRadius: 80,
+              borderRadius: 0,
               marginTop:40
             }}
             source={require('../../resources/images/rat.png')}
